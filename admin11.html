@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin - Keya Tung Beauty Parlour</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f4f8;
+      background-image: url('https://en.idei.club/uploads/posts/2023-06/1687399560_en-idei-club-p-blur-background-image-dizain-pinterest-2.jpg'); background-position: center;background-size:cover;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .login-box, .admin-panel {
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #3cbfae;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+
+    button:hover {
+      background-color: #2ea897;
+    }
+
+    .error {
+      color: red;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+
+    .actions button {
+      margin-right: 5px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .status-confirmed {
+      color: green;
+      font-weight: bold;
+    }
+
+    .top-right {
+      text-align: right;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Admin Login Form -->
+  <div class="login-box" id="loginSection">
+    <h2>Admin Login</h2>
+    <div class="error" id="loginError"></div>
+    <input type="text" id="adminUser" placeholder="Username" required />
+    <input type="password" id="adminPass" placeholder="Password" required />
+    <button onclick="adminLogin()">Login</button>
+  </div>
+
+  <!-- Admin Panel -->
+  <div class="admin-panel hidden" id="adminPanel">
+    <div class="top-right">
+      <button onclick="logout()" style="background-color: #888;">Logout</button>
+    </div>
+    <h2>Confirmed Bookings</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Service</th>
+          <th>Time</th>
+          <th>Email</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="bookingTableBody"></tbody>
+    </table>
+  </div>
+
+  <script>
+    function adminLogin() {
+      const user = document.getElementById("adminUser").value.trim();
+      const pass = document.getElementById("adminPass").value.trim();
+      const errorBox = document.getElementById("loginError");
+
+      if (user === "Keya Tung" && pass === "123456789") {
+        document.getElementById("loginSection").classList.add("hidden");
+        document.getElementById("adminPanel").classList.remove("hidden");
+        loadBookings();
+      } else {
+        errorBox.textContent = "Invalid admin credentials.";
+      }
+    }
+
+    function loadBookings() {
+      const bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+      const tbody = document.getElementById("bookingTableBody");
+      tbody.innerHTML = "";
+
+      if (bookings.length === 0) {
+        tbody.innerHTML = "<tr><td colspan='6' style='text-align:center;'>No bookings found.</td></tr>";
+        return;
+      }
+
+      bookings.forEach((b, index) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${b.name}</td>
+          <td>${b.service}</td>
+          <td>${b.time}</td>
+          <td>${b.email}</td>
+          <td class="${b.status === 'Confirmed' ? 'status-confirmed' : ''}">${b.status || "Pending"}</td>
+          <td class="actions">
+            <button onclick="confirmBooking(${index})">Confirm</button>
+            <button onclick="removeBooking(${index})" style="background:red;">Remove</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function confirmBooking(index) {
+      const bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+      bookings[index].status = "Confirmed";
+      localStorage.setItem("bookings", JSON.stringify(bookings));
+      loadBookings();
+    }
+
+    function removeBooking(index) {
+      let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+      bookings.splice(index, 1);
+      localStorage.setItem("bookings", JSON.stringify(bookings));
+      loadBookings();
+    }
+
+    function logout() {
+      document.getElementById("adminPanel").classList.add("hidden");
+      document.getElementById("loginSection").classList.remove("hidden");
+      document.getElementById("adminUser").value = "";
+      document.getElementById("adminPass").value = "";
+      document.getElementById("loginError").textContent = "";
+    }
+  </script>
+</body>
+</html>
+

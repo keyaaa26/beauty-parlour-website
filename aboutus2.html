@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serenity Spa - About Us</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family:Georgia, 'Times New Roman', Times, serif;
+        }
+
+        body {
+            background-color: #deceba;
+        }
+
+        .header {
+            background-color:#6c3530;
+            color: #deceba;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            height: 13%;
+            z-index: 1000;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #deceba;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color:#2d3436;
+        }
+
+        .hero {
+            height: 70vh;
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://www.massagewarehouse.co.uk/cdn/shop/articles/The-Benefits-of-Unscented-Massage-Oil_847x.jpg?v=1548327956');height: 80vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .team-member {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+            cursor: pointer;
+            position: relative;
+            height: 350px;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .team-member img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-carousel {
+            background: #10532cee;
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            position: relative;
+        }
+
+        .testimonial {
+            display: none;
+            text-align: center;
+        }
+
+        .testimonial.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background: #2d3436;
+        }
+
+        .flip-card {
+            perspective: 1000px;
+            height: 350px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.active .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            padding: 1rem;
+        }
+
+        .flip-card-back {
+            transform: rotateY(180deg);
+            background: #a8edea;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-menu {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Booking Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color:rgb(249, 218, 222);
+            padding: 2rem;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: modalFadeIn 0.3s;
+        }
+
+        @keyframes modalFadeIn {
+            from {opacity: 0; transform: translateY(-20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        .close-modal {
+            float: right;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #2d3436;
+        }
+
+        .booking-form {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .submit-btn {
+            background-color: #2d3436;
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background-color:rgb(223, 150, 150);
+            color: #2d3436;
+        }
+
+        .service-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .service-option {
+            border: 1px solid #ddd;
+            padding: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .service-option:hover {
+            border-color: #a8edea;
+        }
+
+        .service-option.selected {
+            background-color: #a8edea;
+            border-color: #2d3436;
+        }
+
+        .confirmation {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .confirmation h3 {
+            color: #2d3436;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #2d3436;
+                padding: 1rem;
+            }
+
+            .service-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <h1>About Us</h1>
+            
+           
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div>
+            <h2>Experience True Relaxation</h2>
+            <p>Your journey to wellness begins here</p>
+            
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <h2>About Our Spa</h2>
+        <p>Founded in 2010, Serenity Spa has been providing world-class wellness experiences...</p>
+    </section>
+
+    <section id="team" class="section">
+        <h2>Meet Our Team</h2>
+        <div class="team-grid">
+            <!-- Team members added via JavaScript -->
+        </div>
+    </section>
+
+    <section id="testimonials" class="section">
+        <h2>Client Testimonials</h2>
+        <div class="testimonial-carousel">
+            <div class="testimonial active">
+                <p>"Absolutely wonderful experience..."</p>
+                <h4>- Sarah Johnson</h4>
+            </div>
+            <div class="testimonial">
+                <p>"The best massage I've ever had..."</p>
+                <h4>- Michael Chen</h4>
+            </div>
+            <div class="carousel-dots"></div>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeBookingModal()">&times;</span>
+            <div id="bookingForm">
+                <h2>Book Your Spa Experience</h2>
+                <form class="booking-form" onsubmit="submitBooking(event)">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Preferred Date</label>
+                        <input type="date" id="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Preferred Time</label>
+                        <input type="time" id="time" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Select Services</label>
+                        <div class="service-options">
+                            <div class="service-option" onclick="selectService(this)">Swedish Massage</div>
+                            <div class="service-option" onclick="selectService(this)">Deep Tissue</div>
+                            <div class="service-option" onclick="selectService(this)">Hot Stone</div>
+                            <div class="service-option" onclick="selectService(this)">Aromatherapy</div>
+                            <div class="service-option" onclick="selectService(this)">Facial Treatment</div>
+                            <div class="service-option" onclick="selectService(this)">Body Wrap</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">Special Requests</label>
+                        <textarea id="notes" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Booking</button>
+                </form>
+            </div>
+            <div class="confirmation" id="bookingConfirmation">
+                <h3>Thank You for Your Booking!</h3>
+                <p>We've received your reservation request and will contact you shortly to confirm your appointment.</p>
+                <p>For immediate assistance, please call us at (555) 123-4567</p>
+                <button class="submit-btn" onclick="closeBookingModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Team Members Data
+        const teamMembers = [
+            {name: "Ananya Gupta", role: "Lead Therapist", bio: "10+ years experience in holistic treatments and relaxation techniques.", img:"https://i.pinimg.com/236x/2d/78/bb/2d78bbaebc837dd31da9e28ebe7039a3.jpg"},
+            
+            {name: "Santanu Pramanick", role: "Massage Expert", bio: "Specializes in deep tissue and sports massage therapy.", img: "https://www.drmarwah.com/onlineconsultation/images/Dr%20Gurjot%20Marwah.jpg"},
+            {name: "Hiya Mitra", role: "Aesthetician", bio: "Skincare specialist with extensive knowledge in facial treatments.", img: "https://img.freepik.com/premium-photo/woman-business-suit-standing_1124848-131913.jpg"},
+            {name: "Akash Bondapadhay", role: "Spa Director", bio: "Oversees all operations to ensure your perfect spa experience.", img: "C:\Users\Me\OneDrive\Pictures"},
+            {name: "Sakshi Gaiyakwad", role: "Beauty Expert", bio: "Expertise in beauty and makeup.", img: "https://www.shutterstock.com/image-photo/confident-smiling-middle-aged-business-260nw-2451544833.jpg"},
+            {name: "Rahul Sengpta", role: "Hair Stylist", bio: "Amazes you with the best hair styles.", img: "https://as1.ftcdn.net/v2/jpg/05/83/94/50/1000_F_583945057_KQ9qplYNBcN6Jhro84MBOJ57Yc1BJegL.jpg"},
+        ];
+
+        // Populate Team Grid
+        const teamGrid = document.querySelector('.team-grid');
+        teamMembers.forEach(member => {
+            const card = document.createElement('div');
+            card.className = 'flip-card';
+            card.innerHTML = `
+                <div class="flip-card-inner">
+                    <div class="flip-card-front team-member">
+                        <img src="${member.img}" alt="${member.name}">
+                        <h3>${member.name}</h3>
+                        <p>${member.role}</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>${member.bio}</p>
+                    </div>
+                </div>
+            `;
+            card.addEventListener('click', () => {
+                card.classList.toggle('active');
+                // Close other cards
+                document.querySelectorAll('.flip-card').forEach(otherCard => {
+                    if(otherCard !== card) otherCard.classList.remove('active');
+                });
+            });
+            teamGrid.appendChild(card);
+        });
+
+        // Testimonial Carousel
+        let currentTestimonial = 0;
+        const testimonials = document.querySelectorAll('.testimonial');
+        const dotsContainer = document.querySelector('.carousel-dots');
+
+        // Create dots
+        testimonials.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.className = 'dot' + (index === 0 ? ' active' : '');
+            dot.addEventListener('click', () => showTestimonial(index));
+            dotsContainer.appendChild(dot);
+        });
+
+        function showTestimonial(index) {
+            testimonials[currentTestimonial].classList.remove('active');
+            dotsContainer.children[currentTestimonial].classList.remove('active');
+            
+            currentTestimonial = (index + testimonials.length) % testimonials.length;
+            
+            testimonials[currentTestimonial].classList.add('active');
+            dotsContainer.children[currentTestimonial].classList.add('active');
+        }
+
+        // Auto-advance testimonials
+        setInterval(() => showTestimonial(currentTestimonial + 1), 5000);
+
+        // Mobile Menu
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Booking Modal Functions
+        function openBookingModal() {
+            document.getElementById('bookingModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeBookingModal() {
+            document.getElementById('bookingModal').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Allow scrolling
+        }
+
+        function selectService(element) {
+            // Toggle selection
+            element.classList.toggle('selected');
+        }
+
+        function submitBooking(event) {
+            event.preventDefault();
+            
+            // In a real app, you would send this data to your server
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                date: document.getElementById('date').value,
+                time: document.getElementById('time').value,
+                services: Array.from(document.querySelectorAll('.service-option.selected')).map(el => el.textContent),
+                notes: document.getElementById('notes').value
+            };
+            
+            console.log('Booking submitted:', formData);
+            
+            // Show confirmation
+            document.getElementById('bookingForm').style.display = 'none';
+            document.getElementById('bookingConfirmation').style.display = 'block';
+            
+            // In a real app, you might want to reset the form here
+        }
+
+        // Close modal if clicked outside content
+        window.addEventListener('click', (event) => {
+            if (event.target === document.getElementById('bookingModal')) {
+                closeBookingModal();
+            }
+        });
+
+        // Set minimum date to today for booking
+        document.addEventListener('DOMContentLoaded', () => {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('date').min = today;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Appointment - Keya Tung Beauty Parlour</title>
+  <style>
+    body {
+      font-family:Georgia, 'Times New Roman', Times, serif;
+      background: #f0f4f8;
+      background-image: url('https://en.idei.club/uploads/posts/2023-06/1687399560_en-idei-club-p-blur-background-image-dizain-pinterest-2.jpg'); background-position: center;background-size: cover;
+      padding: 40px;
+    }
+
+    .form-box {
+      max-width: 500px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #3cbfae;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #2ea897;
+    }
+
+    .success {
+      text-align: center;
+      color: green;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-box">
+    <h2>Book an Appointment</h2>
+    <input type="text" id="name" placeholder="Your Name" required />
+    <input type="email" id="email" placeholder="Email Address" required />
+    <select id="service" required>
+      <option value="">Select Service</option>
+      <option value="Body Massage">Body Massage</option>
+      <option value="Facial treatments">Facial Treatments</option>
+      <option value="Deep Tissue">Deep Tissue</option>
+      <option value="Manicure/Pedicure">Manicure/Pedicure</option>
+      <option value="Hair Styling">Hair Styling</option>
+    </select>
+    <input type="datetime-local" id="time" required />
+    <button onclick="bookNow()">Confirm Booking</button>
+    <div class="success" id="successMsg"></div>
+  </div>
+
+  <script>
+    function bookNow() {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const service = document.getElementById('service').value;
+      const time = document.getElementById('time').value;
+
+      if (!name || !email || !service || !time) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      const newBooking = {
+        name,
+        email,
+        service,
+        time,
+        status: "Pending"
+      };
+
+      const bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+      bookings.push(newBooking);
+      localStorage.setItem("bookings", JSON.stringify(bookings));
+
+      document.getElementById("successMsg").textContent = "Booking confirmed!";
+      document.getElementById("name").value = "";
+      document.getElementById("email").value = "";
+      document.getElementById("service").value = "";
+      document.getElementById("time").value = "";
+    }
+  </script>
+</body>
+</html>

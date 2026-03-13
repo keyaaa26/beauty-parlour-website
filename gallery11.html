@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gallery - Keya Tung Beauty Parlour</title>
+  <style>
+    body {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff0f5;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(to right, #f8bbd0, #b2ebf2);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 15px 40px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo h1 {
+      font-size: 26px;
+      margin: 0;
+      color: #333;
+    }
+
+    .logo p {
+      font-size: 13px;
+      margin: 3px 0 0;
+      color: #555;
+      letter-spacing: 2px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+      margin: 0 12px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #b76e79;
+    }
+
+    .main {
+      padding: 120px 20px 40px;
+      text-align: center;
+    }
+
+    .main h2 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .main p {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto 60px;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .gallery-grid img:hover {
+      transform: scale(1.03);
+    }
+
+    .reviews-section {
+      background: #ffeef5;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .reviews-section h3 {
+      font-size: 32px;
+      color: #b76e79;
+      margin-bottom: 10px;
+    }
+
+    .reviews-section p {
+      color: #555;
+      margin-bottom: 40px;
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .review-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      padding: 20px;
+      text-align: left;
+    }
+
+    .review-card h4 {
+      margin: 0 0 8px;
+      color: #d81b60;
+    }
+
+    .review-card p {
+      font-size: 14px;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      background: #f0f0f0;
+      margin-top: 30px;
+    }
+
+    footer a {
+      color: #999;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="logo">
+      <h1>Serenity Spa</h1>
+      <p>BEAUTY meets WELLNESS</p>
+    </div>
+   
+  </div>
+</header>
+
+<main class="main">
+  <h2>Beauty in Every Moment</h2>
+  <p>Explore our work and ambiance at Serenity Spa</p>
+
+  <div class="gallery-grid">
+      <img src="https://t3.ftcdn.net/jpg/03/63/18/22/360_F_363182299_Rntpriu3tmVvvHQndWkHhZYOmmGkNrwe.jpg" alt="Facial">
+    <img src="https://orane.com/wp-content/uploads/2021/12/weddinh-hair-7.jpg" alt="Hair styling">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz5Az-ggXZuf9uF8xLMmy-mtqjlW6lOxN_Ig&s" alt="Massage">
+    <img src="https://www.shutterstock.com/image-photo/portrait-beautiful-young-girl-bright-600nw-2498569761.jpg" alt="Model image">
+    <img src="https://www.shutterstock.com/image-photo/portrait-beautiful-young-girl-bright-600nw-2498569761.jpg" alt="Makeup">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfTremhM7T-N2LO59RH0vtj8IPBgJ5geutBA&s" alt="Relaxing">
+  </div>
+</main>
+
+<section class="reviews-section">
+  <h3>What Our Clients Say</h3>
+  <p>Real words from our wonderful guests</p>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <h4>Priya Sharma</h4>
+      <p>"Absolutely loved the facial treatment! My skin feels so fresh and rejuvenated. The ambiance is peaceful and the staff is extremely professional."</p>
+    </div>
+    <div class="review-card">
+      <h4>Anjali Mehta</h4>
+      <p>"The best makeup service I’ve ever had. They made me look stunning for my wedding day. Highly recommended!"</p>
+    </div>
+    <div class="review-card">
+      <h4>Ritika Jain</h4>
+      <p>"The hair spa was amazing. It felt so relaxing, and my hair looks shiny and smooth. I’ll definitely be back."</p>
+    </div>
+    <div class="review-card">
+      <h4>Sneha Verma</h4>
+      <p>"Warm, welcoming and totally worth the visit. The manicure and pedicure were top-notch. My hands and feet feel amazing!"</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="homepage11.html">Return to Homepage</a>
+</footer>
+
+</body>
+</html>

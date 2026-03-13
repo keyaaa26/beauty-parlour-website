@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Keya Tung - Beauty Parlour</title>
+  <style>
+    body {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(to right, #f8bbd0, #b2ebf2);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 15px 40px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo h1 {
+      font-size: 26px;
+      margin: 0;
+      color: #333;
+    }
+
+    .logo p {
+      font-size: 13px;
+      margin: 3px 0 0;
+      color: #555;
+      letter-spacing: 2px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+      margin: 0 12px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #b76e79;
+    }
+
+    .hero {
+      background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+      url('https://media.istockphoto.com/id/1289221022/photo/beauty-natural-woman-covering-her-face-with-tropical-leaf.jpg?s=612x612&w=0&k=20&c=2ba7RFBhq5tVWoj6moHVC4k4SfKi_5naTiBoYi3wzJ8=');
+      background-size: cover;
+      background-position: center;
+      height: 85vh;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin-top: 100px;
+      color: white;
+    }
+
+    .hero-content {
+      width: 100%;
+    }
+
+    .hero h2 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      max-width: 700px;
+      margin: 0 auto 30px;
+      color: #eee;
+    }
+
+    hr {
+      width: 100px;
+      border: 1px solid #f48fb1;
+      margin: 30px auto;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 30px;
+      margin: 0 10px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .btn-primary {
+      background-color: #f48fb1;
+      color: white;
+      border: 2px solid #f48fb1;
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .btn-primary:hover {
+      background-color: #ec407a;
+      border-color: #ec407a;
+    }
+
+    .btn-outline:hover {
+      background-color: white;
+      color: #d81b60;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .hero h2 {
+        font-size: 36px;
+      }
+
+      .hero p {
+        font-size: 18px;
+      }
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      background: #f0f0f0;
+      margin-top: 30px;
+    }
+
+    footer a {
+      color: #999;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <div class="logo">
+        <h1>Serenity Spa</h1>
+        <p>BEAUTY meets WELLNESS</p>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="homepage11.html">Home</a></li>
+          <li><a href="service1.html">Services</a></li>
+          <li><a href="gallery11.html">Gallery</a></li>
+          <li><a href="contactus1.html">Contact</a></li>
+          <li><a href="aboutus2.html">About Us</a></li>
+          <li><a href="admin11.html"></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h2>Beauty & Elegance Redefined</h2>
+        <hr>
+        <p>Experience luxury beauty treatments at Serenity Spa. Where beauty meets excellence.</p>
+        <div>
+          <a href="book2.html" class="btn btn-outline">Book Appointment</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <a href="admin11.html">Admin Dashboard</a>
+  </footer>
+
+</body>
+</html>
